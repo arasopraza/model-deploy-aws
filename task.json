@@ -1,0 +1,23 @@
+{
+  "family": "sample-back-end-fargate",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+      {
+          "name": "fargate-app",
+          "image": "public.ecr.aws/t4x7u3s2/aras/back-end-nodejs:latest",
+          "portMappings": [
+              {
+                  "containerPort": 3000,
+                  "protocol": "tcp"
+              }
+          ],
+          "essential": true
+      }
+  ],
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}
