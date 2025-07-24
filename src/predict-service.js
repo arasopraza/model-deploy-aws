@@ -28,10 +28,10 @@ class PredictService {
     const predict = await model.predict(tensor); // Runs the model prediction on the input tensor. Returns a tensor containing the probability scores for each class.
     const score = await predict.data(); // Extracts the prediction results as a JavaScript array of numbers. This is an asynchronous operation because it reads data from the Tensorflow backend (native C++ binding).
     const confidenceScore = Math.max(...score); // Finds the highest probability value from the prediction scores. This represents how confident the model is in its prediction.
-    const label = tf.argMax(predict, 1).dataSync()[0]; // Identifies the index of the highest probability. tf.argMax returns a tensor of indices; dataSync()[0] extracts the single index as a plain number.
+    const highestIndex = tf.argMax(predict, 1).dataSync()[0]; // Identifies the index of the highest probability. tf.argMax returns a tensor of indices; dataSync()[0] extracts the single index as a plain number.
 
     const diseaseLabels = metadata.labels; // Retrieves the array of class labels from the model's metadata. These labels represent the possible disease categories the model can predict.
-    const diseaseLabel = diseaseLabels[label]; // Maps the predicted class index (label) to its corresponding human-readable disease name. For example, if label = 2, this selects metadata.labels[2] ("Vascular Lesion").
+    const diseaseLabel = diseaseLabels[highestIndex]; // Maps the predicted class index (label) to its corresponding human-readable disease name. For example, if label = 2, this selects metadata.labels[2] ("Vascular Lesion").
 
     return { confidenceScore, diseaseLabel }; // Returns an object containing the prediction result.
   }
