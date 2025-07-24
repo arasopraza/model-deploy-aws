@@ -1,8 +1,8 @@
-class PredictHandler {
+class Handler {
   constructor(modelService, llmService) {
     this._modelService = modelService;
     this._llmService = llmService;
-    
+
     this.getPredictResult = this.getPredictResult.bind(this);
     this.getChatbotResponse = this.getChatbotResponse.bind(this);
   }
@@ -36,4 +36,4 @@ class PredictHandler {
   }
 }
 
-module.exports = PredictHandler;
+module.exports = Handler;
