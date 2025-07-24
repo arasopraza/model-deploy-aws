@@ -1,6 +1,6 @@
 const Hapi = require('@hapi/hapi');
 const routes = require('./routes');
-const PredictService = require('./service');
+const PredictService = require('./predict-service');
 const LLMService = require('./llm-service');
 const PredictHandler = require('./handler');
 
