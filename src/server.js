@@ -1,8 +1,8 @@
 const Hapi = require('@hapi/hapi');
 const routes = require('./routes');
-const PredictService = require('./service');
+const PredictService = require('./predict-service');
 const LLMService = require('./llm-service');
-const PredictHandler = require('./handler');
+const Handler = require('./handler');
 
 const init = async () => {
   const server = Hapi.server({
@@ -12,7 +12,8 @@ const init = async () => {
 
   const predictService = new PredictService();
   const llmService = new LLMService();
-  const handler = new PredictHandler(predictService, llmService);
+
+  const handler = new Handler(predictService, llmService);
   server.route(routes(handler));
 
   await server.start();

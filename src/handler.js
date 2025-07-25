@@ -1,4 +1,4 @@
-class PredictHandler {
+class Handler {
   constructor(modelService, llmService) {
     this._modelService = modelService;
     this._llmService = llmService;
@@ -35,4 +35,4 @@ class PredictHandler {
   }
 }
 
-module.exports = PredictHandler;
+module.exports = Handler;
